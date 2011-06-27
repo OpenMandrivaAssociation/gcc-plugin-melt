@@ -86,6 +86,7 @@ extensions for:
 	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
 	-i
 
+%{__install} -m755 -d %{buildroot}%{_bindir}
 %{__install} -m755 -d %{buildroot}%{_infodir}
 %{__install} -m755 -d %{buildroot}%{_docdir}/%{name}/html/
 

@@ -58,11 +58,11 @@ extensions for:
 %files
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
-%{gccdir}/plugin/include/*
-%{gccdir}/plugin/libexec/*
-%{gccdir}/plugin/melt-source/*
-%{gccdir}/plugin/melt.so
-%{gccdir}/plugin/melt-build-module.mk
+%{gccdir}/include/*
+%{gccdir}/libexec/*
+%{gccdir}/melt-source/*
+%{gccdir}/melt.so
+%{gccdir}/melt-build-module.mk
 %{_infodir}/meltplugin*
 %doc %{_docdir}/gcc-plugin-melt
 

@@ -73,20 +73,21 @@ extensions for:
 %patch1 -p2 -b .compil
 
 %build
-./build-melt-plugin.sh					\
+./build-melt-plugin.sh -q					\
 	-s DESTDIR=%{buildroot}/			\
 	-M$PWD						\
 	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
 	-b
 
 %install
-./build-melt-plugin.sh					\
+./build-melt-plugin.sh -q				\
 	-s DESTDIR=%{buildroot}/			\
 	-M$PWD						\
 	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
 	-i
 
-%{__install} -m755 -d %{buildroot}%{_infodir}/%{name}/html
+%{__install} -m755 -d %{buildroot}%{_infodir}/
+%{__install} -m755 -d %{buildroot}%{_docdir}/%{name}/html/
 
 %{__install} -m644 *.info %{buildroot}%{_infodir}
 %{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}/html/

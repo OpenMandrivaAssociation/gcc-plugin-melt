@@ -58,9 +58,9 @@ extensions for:
 %files
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
-%{gccdir}/plugin/include/
-%{gccdir}/plugin/libexec/
-%{gccdir}/plugin/melt-source/
+%{gccdir}/plugin/include/*
+%{gccdir}/plugin/libexec/*
+%{gccdir}/plugin/melt-source/*
 %{gccdir}/plugin/melt.so
 %{gccdir}/plugin/melt-build-module.mk
 %{_infodir}/meltplugin*
@@ -86,13 +86,13 @@ extensions for:
 	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
 	-i
 
-%{__install} -m755 -d %{buildroot}%{_infodir}/
+%{__install} -m755 -d %{buildroot}%{_infodir}
 %{__install} -m755 -d %{buildroot}%{_docdir}/%{name}/html/
 
 %{__install} -m644 *.info %{buildroot}%{_infodir}
 %{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}/html/
 
-%{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}
+%{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}/
 
 %clean
 rm -fr %{buildroot}

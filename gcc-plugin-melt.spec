@@ -1,7 +1,7 @@
 %define name gcc-plugin-melt
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
 %define gccversion 4.6.1
-%define gccrelease 1
+%define gccrelease 2
 %define meltversion 0.7
 %define meltbranch 4.6
 %define version %{gccversion}+%{meltversion}

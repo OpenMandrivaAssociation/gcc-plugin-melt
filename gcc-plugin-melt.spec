@@ -10,7 +10,7 @@
 
 Name:		%{name}
 Version:	%{version}
-Release:	3
+Release:	4
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -19,6 +19,7 @@ Source0:	http://gcc-melt.org/%{srcname}.tgz
 Patch0:		melt-stage0-static.patch
 Patch1:		0001-MELT-Separate-build-and-install-steps.patch
 Requires:	gcc
+Suggests:	%{name}-doc
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	gmp-devel
 BuildRequires:	ppl-devel
@@ -64,6 +65,15 @@ extensions for:
 %{gccdir}/melt.so
 %{gccdir}/melt-build-module.mk
 %{_infodir}/meltplugin*
+
+%package doc
+Summary:	GCC MELT Plugin Documentation
+BuildArch:	noarch
+
+%description doc
+This packages provides the GCC MELT documentation.
+
+%files doc
 %doc %{_docdir}/gcc-plugin-melt
 
 %prep

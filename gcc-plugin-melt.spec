@@ -10,7 +10,7 @@
 
 Name:		%{name}
 Version:	%{version}
-Release:	2
+Release:	3
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -18,7 +18,7 @@ URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
 Patch0:		melt-stage0-static.patch
 Patch1:		0001-MELT-Separate-build-and-install-steps.patch
-Requires:	gcc-plugin-devel = %{gccversion}-%{gccrelease}
+Requires:	gcc
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	gmp-devel
 BuildRequires:	ppl-devel

@@ -10,7 +10,7 @@
 
 Name:		%{name}
 Version:	%{version}
-Release:	4
+Release:	5
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -74,7 +74,7 @@ BuildArch:	noarch
 This packages provides the GCC MELT documentation.
 
 %files doc
-%doc %{_docdir}/gcc-plugin-melt
+%doc %{_docdir}-doc/gcc-plugin-melt
 
 %prep
 %setup -q -n %{srcname}

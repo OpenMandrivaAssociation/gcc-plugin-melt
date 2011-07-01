@@ -30,6 +30,7 @@ BuildRequires:	texinfo
 BuildRequires:	texi2html
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
+Provides:	gccmelt
 
 %description
 GCC MELT is a GCC plugin providing a lispy domain specific

@@ -85,7 +85,7 @@ This packages provides the GCC MELT documentation.
 %patch0 -p0 -b .stage0
 
 %build
-%{gccdir}gengtype -r %{gtypestate} -P gt-melt-runtime-4.6.h melt-runtime.h melt/generated/meltrunsup.h melt-runtime.c
+%{gengtype} -r %{gtypestate} -P gt-melt-runtime-4.6.h melt-runtime.h melt/generated/meltrunsup.h melt-runtime.c
 
 ./build-melt-plugin.sh -q		\
 	-s DESTDIR=%{buildroot}/	\

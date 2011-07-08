@@ -2,22 +2,24 @@
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
 %define gccversion 4.6.1
 %define gccrelease 2
-%define meltversion 0.7
+%define meltversion 0.8rc2
 %define meltbranch 4.6
 %define version %{gccversion}+%{meltversion}
 
-%define gccdir %(gcc -print-file-name=plugin)
+%define gccdir %(gcc -print-file-name=)
+%define gccplugindir %(gcc -print-file-name=plugin)
+%define gengtype %{gccdir}gengtype
+%define gtypestate %{gccdir}gtype.state
 
 Name:		%{name}
 Version:	%{version}
-Release:	6
+Release:	1
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
 URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
 Patch0:		melt-stage0-static.patch
-Patch1:		0001-MELT-Separate-build-and-install-steps.patch
 Requires:	gcc
 Suggests:	%{name}-doc
 BuildRequires:	gcc-plugin-devel
@@ -60,11 +62,11 @@ extensions for:
 %files
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
-%{gccdir}/include/*
-%{gccdir}/libexec/*
-%{gccdir}/melt-source/*
-%{gccdir}/melt.so
-%{gccdir}/melt-build-module.mk
+%{gccplugindir}/include/*
+%{gccplugindir}/libexec/*
+%{gccplugindir}/melt-source/*
+%{gccplugindir}/melt.so
+%{gccplugindir}/melt-build-module.mk
 %{_infodir}/meltplugin*
 
 %package doc
@@ -81,20 +83,21 @@ This packages provides the GCC MELT documentation.
 %setup -q -n %{srcname}
 # Required workaround suggested by basile to build on x86
 %patch0 -p0 -b .stage0
-%patch1 -p2 -b .compil
 
 %build
-./build-melt-plugin.sh -q					\
-	-s DESTDIR=%{buildroot}/			\
-	-M$PWD						\
-	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
+%{gccdir}gengtype -r %{gtypestate} -P gt-melt-runtime-4.6.h melt-runtime.h melt/generated/meltrunsup.h melt-runtime.c
+
+./build-melt-plugin.sh -q		\
+	-s DESTDIR=%{buildroot}/	\
+	-M $PWD				\
+	-Y gt-melt-runtime-4.6.h	\
 	-b
 
 %install
-./build-melt-plugin.sh -q				\
-	-s DESTDIR=%{buildroot}/			\
-	-M$PWD						\
-	-Y$PWD/melt/generated/gt-melt-runtime-plugin.h	\
+./build-melt-plugin.sh -q		\
+	-s DESTDIR=%{buildroot}/	\
+	-M $PWD				\
+	-Y gt-melt-runtime-4.6.h	\
 	-i
 
 %{__install} -m755 -d %{buildroot}%{_bindir}

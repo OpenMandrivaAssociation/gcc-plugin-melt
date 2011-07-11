@@ -2,7 +2,7 @@
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
 %define gccversion 4.6.1
 %define gccrelease 2
-%define meltversion 0.8rc2
+%define meltversion 0.8
 %define meltbranch 4.6
 %define version %{gccversion}+%{meltversion}
 
@@ -82,23 +82,13 @@ This packages provides the GCC MELT documentation.
 %prep
 %setup -q -n %{srcname}
 # Required workaround suggested by basile to build on x86
-%patch0 -p0 -b .stage0
+#patch0 -p0 -b .stage0
 
 %build
-%{gengtype} -r %{gtypestate} -P gt-melt-runtime-4.6.h melt-runtime.h melt/generated/meltrunsup.h melt-runtime.c
-
-./build-melt-plugin.sh -q		\
-	-s DESTDIR=%{buildroot}/	\
-	-M $PWD				\
-	-Y gt-melt-runtime-4.6.h	\
-	-b
+%make all
 
 %install
-./build-melt-plugin.sh -q		\
-	-s DESTDIR=%{buildroot}/	\
-	-M $PWD				\
-	-Y gt-melt-runtime-4.6.h	\
-	-i
+%make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
 %{__install} -m755 -d %{buildroot}%{_infodir}

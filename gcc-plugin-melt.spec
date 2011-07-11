@@ -4,13 +4,9 @@
 %define meltbranch 4.6
 %define version %{meltversion}
 
-%define gccdir %(gcc -print-file-name=)
-%define gccplugindir %(gcc -print-file-name=plugin)
-%define gengtype %{gccdir}gengtype
-%define gtypestate %{gccdir}gtype.state
-
 Name:		%{name}
 Version:	%{version}
+Epoch:		1
 Release:	1
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin

@@ -57,7 +57,6 @@ extensions for:
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
-%{gccplugindir}/include/melt/generated/*
 %{gccplugindir}/melt-modules/*
 %{gccplugindir}/melt-modules/debugnoline/*
 %{gccplugindir}/melt-modules/optimized/*

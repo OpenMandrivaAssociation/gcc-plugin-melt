@@ -4,6 +4,8 @@
 %define meltbranch 4.6
 %define version %{meltversion}
 
+%define gccplugindir %(gcc -print-file-name=plugin)
+
 Name:		%{name}
 Version:	%{version}
 Epoch:		1

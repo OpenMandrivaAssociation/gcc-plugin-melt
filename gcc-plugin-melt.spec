@@ -26,8 +26,6 @@ BuildRequires:	mpfr-devel
 BuildRequires:	libmpc-devel
 BuildRequires:	texinfo
 BuildRequires:	texi2html
-Requires(post): /sbin/install-info
-Requires(preun): /sbin/install-info
 Provides:	gccmelt
 
 %description
@@ -59,11 +57,14 @@ extensions for:
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
-%{gccplugindir}/libexec/*
-%{gccplugindir}/melt-source/*
+%{gccplugindir}/include/melt/generated/*
+%{gccplugindir}/melt-modules/*
+%{gccplugindir}/melt-modules/debugnoline/*
+%{gccplugindir}/melt-modules/optimized/*
+%{gccplugindir}/melt-modules/quicklybuilt/*
+%{gccplugindir}/melt-module.mk
 %{gccplugindir}/melt.so
-%{gccplugindir}/melt-build-module.mk
-%{_infodir}/meltplugin*
+#{_infodir}/meltplugin*
 
 %package doc
 Summary:	GCC MELT Plugin Documentation
@@ -87,9 +88,9 @@ make all
 make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
-%{__install} -m755 -d %{buildroot}%{_infodir}
-%{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
 
+#{__install} -m755 -d %{buildroot}%{_infodir}
+#{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
 #{__install} -m644 *.info %{buildroot}%{_infodir}
 #{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 

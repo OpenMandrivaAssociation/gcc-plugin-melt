@@ -71,7 +71,7 @@ BuildArch:	noarch
 This packages provides the GCC MELT documentation.
 
 %files doc
-%doc %{_docdir}/gcc-plugin-melt-doc
+#doc %{_docdir}/gcc-plugin-melt-doc
 
 %prep
 %setup -q -n %{srcname}
@@ -88,8 +88,8 @@ make DESTDIR=%{buildroot}/ install
 %{__install} -m755 -d %{buildroot}%{_infodir}
 %{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
 
-%{__install} -m644 *.info %{buildroot}%{_infodir}
-%{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
+#{__install} -m644 *.info %{buildroot}%{_infodir}
+#{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 
 %{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}/
 

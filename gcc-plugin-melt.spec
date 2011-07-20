@@ -9,7 +9,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	1
+Release:	2
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -57,10 +57,8 @@ extensions for:
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
+%{gccplugindir}/melt-sources/*
 %{gccplugindir}/melt-modules/*
-%{gccplugindir}/melt-modules/debugnoline/*
-%{gccplugindir}/melt-modules/optimized/*
-%{gccplugindir}/melt-modules/quicklybuilt/*
 %{gccplugindir}/melt-module.mk
 %{gccplugindir}/melt.so
 #{_infodir}/meltplugin*
@@ -84,7 +82,7 @@ This packages provides the GCC MELT documentation.
 make all
 
 %install
-make DESTDIR=%{buildroot}/ install
+make DESTDIR=%{buildroot}/ install install-melt-source
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
 

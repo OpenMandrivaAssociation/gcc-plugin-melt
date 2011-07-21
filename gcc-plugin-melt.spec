@@ -1,6 +1,6 @@
 %define name gcc-plugin-melt
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
-%define meltversion 0.8
+%define meltversion 0.8.0.99
 %define meltbranch 4.6
 %define version %{meltversion}
 
@@ -9,7 +9,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	2
+Release:	3
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -57,11 +57,11 @@ extensions for:
 %defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
-%{gccplugindir}/melt-source/*
+%{gccplugindir}/melt-sources/*
 %{gccplugindir}/melt-modules/*
 %{gccplugindir}/melt-module.mk
 %{gccplugindir}/melt.so
-#{_infodir}/meltplugin*
+{_infodir}/meltplugin*
 
 %package doc
 Summary:	GCC MELT Plugin Documentation
@@ -71,7 +71,7 @@ BuildArch:	noarch
 This packages provides the GCC MELT documentation.
 
 %files doc
-#doc %{_docdir}/gcc-plugin-melt-doc
+doc %{_docdir}/gcc-plugin-melt-doc
 
 %prep
 %setup -q -n %{srcname}
@@ -82,14 +82,14 @@ This packages provides the GCC MELT documentation.
 make all
 
 %install
-make DESTDIR=%{buildroot}/ install install-melt-source
+make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
 
-#{__install} -m755 -d %{buildroot}%{_infodir}
-#{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
-#{__install} -m644 *.info %{buildroot}%{_infodir}
-#{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
+{__install} -m755 -d %{buildroot}%{_infodir}
+{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
+{__install} -m644 *.info %{buildroot}%{_infodir}
+{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 
 %{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}/
 

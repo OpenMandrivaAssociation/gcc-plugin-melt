@@ -88,10 +88,10 @@ BuildArch:	noarch
 #patch0 -p0 -b .stage0
 
 %build
-make all
+%make all
 
 %install
-make DESTDIR=%{buildroot}/ install
+%make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
 %{__install} -m755 -d %{buildroot}%{vimdir}

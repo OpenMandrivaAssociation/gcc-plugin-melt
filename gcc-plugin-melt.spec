@@ -21,6 +21,7 @@ Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
 Requires:	gcc
 Suggests:	%{name}-doc
+Suggests:	%{name}-vim
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	gmp-devel
 BuildRequires:	ppl-devel

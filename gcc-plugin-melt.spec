@@ -10,7 +10,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	3
+Release:	4
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C

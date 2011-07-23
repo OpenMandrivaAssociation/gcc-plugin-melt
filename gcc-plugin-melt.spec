@@ -18,6 +18,7 @@ URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
 Source1:	http://pvittet.com/melt/plugin_vim/melt_plugin.zip
 Patch0:		melt-stage0-static.patch
+Patch1:		gcc-plugin-melt-parallel-build.patch
 Requires:	gcc
 Suggests:	%{name}-doc
 BuildRequires:	gcc-plugin-devel
@@ -86,6 +87,10 @@ BuildArch:	noarch
 
 # Required workaround suggested by basile to build on x86
 #patch0 -p0 -b .stage0
+
+# Removing of .NOTPARALLEL in MELT-Plugin-Makefile
+# Must be one WITH usage of make -j (or %make)
+%patch1 -p0 -b .notparallel
 
 %build
 %make all

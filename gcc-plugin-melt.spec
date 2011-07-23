@@ -56,7 +56,6 @@ extensions for:
   %_remove_install_info meltpluginapi.info
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
 %{gccplugindir}/melt-sources/*

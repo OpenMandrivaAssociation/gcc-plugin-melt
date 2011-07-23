@@ -73,7 +73,7 @@ BuildArch:	noarch
 This packages provides the GCC MELT documentation.
 
 %files doc
-doc %{_docdir}/gcc-plugin-melt-doc
+%doc %{_docdir}/gcc-plugin-melt-doc
 
 %package vim
 Summary:	VIM plugin to handle GCC MELT files
@@ -96,11 +96,11 @@ make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
 %{__install} -m755 -d %{buildroot}%{vimdir}
+%{__install} -m755 -d %{buildroot}%{_infodir}
+%{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
 
-{__install} -m755 -d %{buildroot}%{_infodir}
-{__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
-{__install} -m644 *.info %{buildroot}%{_infodir}
-{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
+%{__install} -m644 *.info %{buildroot}%{_infodir}
+%{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 
 %{__install} -m644 -D melt_plugin/ftplugin/melt.vim %{buildroot}%{vimdir}/ftplugin/melt.vim
 %{__install} -m644 -D melt_plugin/syntax/melt.vim %{buildroot}%{vimdir}/syntax/melt.vim

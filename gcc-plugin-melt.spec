@@ -5,6 +5,7 @@
 %define version %{meltversion}
 
 %define gccplugindir %(gcc -print-file-name=plugin)
+%define vimdir %{_datadir}/vim
 
 Name:		%{name}
 Version:	%{version}
@@ -15,6 +16,7 @@ Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
 URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
+Source1:	http://pvittet.com/melt/plugin_vim/melt_plugin.zip
 Patch0:		melt-stage0-static.patch
 Requires:	gcc
 Suggests:	%{name}-doc
@@ -73,8 +75,16 @@ This packages provides the GCC MELT documentation.
 %files doc
 doc %{_docdir}/gcc-plugin-melt-doc
 
+%package vim
+Summary:	VIM plugin to handle GCC MELT files
+BuildArch:	noarch
+
+%description vim
+%{vimdir}/ftplugin/
+
 %prep
-%setup -q -n %{srcname}
+%setup -q -n %{srcname} -a 1
+
 # Required workaround suggested by basile to build on x86
 #patch0 -p0 -b .stage0
 
@@ -85,11 +95,15 @@ make all
 make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}
+%{__install} -m755 -d %{buildroot}%{vimdir}
 
 {__install} -m755 -d %{buildroot}%{_infodir}
 {__install} -m755 -d %{buildroot}%{_docdir}/%{name}-doc/html/
 {__install} -m644 *.info %{buildroot}%{_infodir}
 {__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
+
+%{__install} -m644 -D melt_plugin/ftplugin/melt.vim %{buildroot}%{vimdir}/ftplugin/melt.vim
+%{__install} -m644 -D melt_plugin/syntax/melt.vim %{buildroot}%{vimdir}/syntax/melt.vim
 
 %{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}/
 

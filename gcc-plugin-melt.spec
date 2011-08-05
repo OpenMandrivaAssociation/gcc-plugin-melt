@@ -20,6 +20,7 @@ Source1:	http://pvittet.com/melt/plugin_vim/melt_plugin.zip
 Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
 Requires:	gcc
+Requires:	gcc-plugin-devel
 Suggests:	%{name}-doc
 Suggests:	%{name}-vim
 BuildRequires:	gcc-plugin-devel

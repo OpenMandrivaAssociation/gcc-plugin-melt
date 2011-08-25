@@ -1,6 +1,6 @@
 %define name gcc-plugin-melt
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
-%define meltversion 0.8.0.99
+%define meltversion 0.8.99
 %define meltbranch 4.6
 %define version %{meltversion}
 
@@ -10,7 +10,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	4
+Release:	5
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -23,6 +23,7 @@ Requires:	gcc
 Requires:	gcc-plugin-devel
 Suggests:	%{name}-doc
 Suggests:	%{name}-vim
+BuildConflicts:	gccmelt
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	gmp-devel
 BuildRequires:	ppl-devel
@@ -65,14 +66,14 @@ extensions for:
 %{gccplugindir}/melt-modules/*
 %{gccplugindir}/melt-module.mk
 %{gccplugindir}/melt.so
-{_infodir}/meltplugin*
+%{_infodir}/meltplugin*
 
 %package doc
 Summary:	GCC MELT Plugin Documentation
 BuildArch:	noarch
 
 %description doc
-This packages provides the GCC MELT documentation.
+This package provides the GCC MELT documentation.
 
 %files doc
 %doc %{_docdir}/gcc-plugin-melt-doc
@@ -82,7 +83,12 @@ Summary:	VIM plugin to handle GCC MELT files
 BuildArch:	noarch
 
 %description vim
+This package provides the VIM plugin for syntax and file
+type handling of MELT sources.
+
+%files vim
 %{vimdir}/ftplugin/
+%{vimdir}/syntax/
 
 %prep
 %setup -q -n %{srcname} -a 1
@@ -94,10 +100,18 @@ BuildArch:	noarch
 # Must be one WITH usage of make -j (or %make)
 %patch1 -p0 -b .notparallel
 
+
+# Avoid consuming too much memory
+#sed -ri 												\
+#	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'					\
+#	Makefile
+
 %build
-%make all
+export LC_ALL=C
+make all
 
 %install
+export LC_ALL=C
 %make DESTDIR=%{buildroot}/ install
 
 %{__install} -m755 -d %{buildroot}%{_bindir}

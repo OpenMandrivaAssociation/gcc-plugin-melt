@@ -32,6 +32,7 @@ BuildRequires:	mpfr-devel
 BuildRequires:	libmpc-devel
 BuildRequires:	texinfo
 BuildRequires:	texi2html
+BuildRequires:	autogen
 Provides:	gccmelt
 
 %description

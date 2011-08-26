@@ -17,6 +17,7 @@ Group:		Development/C
 URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
 Source1:	http://pvittet.com/melt/plugin_vim/melt_plugin.zip
+Source2:	ftdetect-melt.vim
 Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
 Requires:	gcc
@@ -88,6 +89,7 @@ This package provides the VIM plugin for syntax and file
 type handling of MELT sources.
 
 %files vim
+%{vimdir}/ftdetect/
 %{vimdir}/ftplugin/
 %{vimdir}/syntax/
 
@@ -100,7 +102,6 @@ type handling of MELT sources.
 # Removing of .NOTPARALLEL in MELT-Plugin-Makefile
 # Must be one WITH usage of make -j (or %make)
 %patch1 -p0 -b .notparallel
-
 
 # Avoid consuming too much memory
 #sed -ri 												\
@@ -123,6 +124,7 @@ export LC_ALL=C
 %{__install} -m644 *.info %{buildroot}%{_infodir}
 %{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 
+%{__install} -m644 -D %{SOURCE2} %{buildroot}%{vimdir}/ftdetect/melt.vim
 %{__install} -m644 -D melt_plugin/ftplugin/melt.vim %{buildroot}%{vimdir}/ftplugin/melt.vim
 %{__install} -m644 -D melt_plugin/syntax/melt.vim %{buildroot}%{vimdir}/syntax/melt.vim
 

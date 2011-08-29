@@ -10,7 +10,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	5
+Release:	7
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -101,16 +101,16 @@ type handling of MELT sources.
 
 # Removing of .NOTPARALLEL in MELT-Plugin-Makefile
 # Must be one WITH usage of make -j (or %make)
-%patch1 -p0 -b .notparallel
+#patch1 -p0 -b .notparallel
 
 # Avoid consuming too much memory
-sed -ri 												\
-	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'					\
-	Makefile
+##sed -ri 								\
+##	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'	\
+##	Makefile
 
 %build
 export LC_ALL=C
-make all
+%make
 
 %install
 export LC_ALL=C

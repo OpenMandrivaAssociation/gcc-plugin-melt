@@ -10,7 +10,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	9
+Release:	12
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
@@ -104,9 +104,9 @@ type handling of MELT sources.
 #patch1 -p0 -b .notparallel
 
 # Avoid consuming too much memory
-#sed -ri 								\
-#	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'	\
-#	Makefile
+sed -ri 								\
+	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'	\
+	Makefile
 
 %build
 export LC_ALL=C

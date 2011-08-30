@@ -10,13 +10,14 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	13
+Release:	14
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
 URL:		http://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tgz
-Source1:	http://pvittet.com/melt/plugin_vim/melt_plugin.zip
+# From https://gitorious.org/melt-vim-syntax/melt-vim-syntax/archive-tarball/master
+Source1:	melt-vim-syntax.tar.gz
 Source2:	ftdetect-melt.vim
 Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
@@ -125,8 +126,8 @@ export LC_ALL=C
 %{__install} -m644 *.html %{buildroot}%{_docdir}/%{name}-doc/html/
 
 %{__install} -m644 -D %{SOURCE2} %{buildroot}%{vimdir}/ftdetect/melt.vim
-%{__install} -m644 -D melt_plugin/ftplugin/melt.vim %{buildroot}%{vimdir}/ftplugin/melt.vim
-%{__install} -m644 -D melt_plugin/syntax/melt.vim %{buildroot}%{vimdir}/syntax/melt.vim
+%{__install} -m644 -D melt-vim-syntax-melt-vim-syntax/ftplugin/melt.vim %{buildroot}%{vimdir}/ftplugin/melt.vim
+%{__install} -m644 -D melt-vim-syntax-melt-vim-syntax/syntax/melt.vim %{buildroot}%{vimdir}/syntax/melt.vim
 
 %{__install} -m755 pygmentize-melt %{buildroot}%{_bindir}/
 

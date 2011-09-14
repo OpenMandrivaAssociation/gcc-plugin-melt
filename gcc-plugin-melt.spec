@@ -1,6 +1,6 @@
 %define name gcc-plugin-melt
 %define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
-%define meltversion 0.9rc1
+%define meltversion 0.9rc2
 %define meltbranch 4.6
 %define version %{meltversion}
 
@@ -10,7 +10,7 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		1
-Release:	16
+Release:	17
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C

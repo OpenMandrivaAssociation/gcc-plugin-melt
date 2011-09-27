@@ -9,7 +9,7 @@
 
 Name:		%{name}
 Version:	%{version}
-Epoch:		1
+Epoch:		2
 Release:	18
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin

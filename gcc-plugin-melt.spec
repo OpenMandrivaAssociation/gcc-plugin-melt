@@ -1,8 +1,7 @@
 %define name gcc-plugin-melt
-%define srcname melt-%{meltversion}-plugin-for-gcc-%{meltbranch}
-%define meltversion 0.9.1rc1
-%define version 0.9.1.0rc1
-%define meltbranch 4.6
+%define srcname melt-%{meltversion}-plugin-for-gcc-4.6-or-4.7
+%define meltversion 0.9.5rc1
+%define version 0.9.5.0.rc1
 
 %define gccplugindir %(gcc -print-file-name=plugin)
 %define vimdir %{_datadir}/vim
@@ -10,17 +9,18 @@
 Name:		%{name}
 Version:	%{version}
 Epoch:		2
-Release:	20
+Release:	1
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
 URL:		http://gcc-melt.org
-Source0:	http://gcc-melt.org/%{srcname}.tgz
+Source0:	http://gcc-melt.org/%{srcname}.tar.gz
 # From https://gitorious.org/melt-vim-syntax/melt-vim-syntax/archive-tarball/master
 Source1:	melt-vim-syntax.tar.gz
 Source2:	ftdetect-melt.vim
 Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
+Patch2:		melt-0.9.5rc1_melt-tiny-tests_fix.patch
 Requires:	gcc
 Requires:	gcc-plugin-devel
 Suggests:	%{name}-doc
@@ -54,14 +54,6 @@ extensions for:
 * Any processing taking advantage of powerful GCC internal
   representations of your source code.
 
-%post
-  %_install_info meltplugin.info
-  %_install_info meltpluginapi.info
-
-%preun
-  %_remove_install_info meltplugin.info
-  %_remove_install_info meltpluginapi.info
-
 %files
 %{_bindir}/pygmentize-melt
 %{gccplugindir}/include/*
@@ -69,7 +61,6 @@ extensions for:
 %{gccplugindir}/melt-modules/*
 %{gccplugindir}/melt-module.mk
 %{gccplugindir}/melt.so
-%{_infodir}/meltplugin*
 
 %package doc
 Summary:	GCC MELT Plugin Documentation
@@ -80,6 +71,8 @@ This package provides the GCC MELT documentation.
 
 %files doc
 %doc %{_docdir}/gcc-plugin-melt-doc
+%doc %{_infodir}/meltplugin.info*
+%doc %{_infodir}/meltpluginapi.info*
 
 %package vim
 Summary:	VIM plugin to handle GCC MELT files
@@ -104,6 +97,9 @@ type handling of MELT sources.
 # Must be one WITH usage of make -j (or %make)
 #patch1 -p0 -b .notparallel
 
+# Without '|| true', melt-tiny-tests fails
+%patch2 -p0 -b .melt-tiny-tests
+
 # Avoid consuming too much memory
 #sed -ri 								\
 #	-e 's/MELTGCC_OPTIMFLAGS= -O2/MELTGCC_OPTIMFLAGS= -O0/g'	\
@@ -111,7 +107,7 @@ type handling of MELT sources.
 
 %build
 export LC_ALL=C
-%make all
+%make CC=g++ MELTGCC=gcc GCCMELT_CC=g++
 
 %install
 export LC_ALL=C

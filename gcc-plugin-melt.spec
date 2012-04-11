@@ -1,7 +1,7 @@
 %define name gcc-plugin-melt
 %define srcname melt-%{meltversion}-plugin-for-gcc-4.6-or-4.7
-%define meltversion 0.9.5rc1
-%define version 0.9.5.0.rc1
+%define meltversion 0.9.5rc3
+%define version 0.9.5.0.rc3
 
 %define gccplugindir %(gcc -print-file-name=plugin)
 %define vimdir %{_datadir}/vim
@@ -20,7 +20,7 @@ Source1:	melt-vim-syntax.tar.gz
 Source2:	ftdetect-melt.vim
 Patch0:		melt-stage0-static.patch
 Patch1:		gcc-plugin-melt-parallel-build.patch
-Patch2:		melt-0.9.5rc1_melt-tiny-tests_fix.patch
+Patch3:		melt-0.9.5rc3.fix-talpo.patch
 Requires:	gcc
 Requires:	gcc-plugin-devel
 Suggests:	%{name}-doc
@@ -98,7 +98,9 @@ type handling of MELT sources.
 #patch1 -p0 -b .notparallel
 
 # Without '|| true', melt-tiny-tests fails
-%patch2 -p0 -b .melt-tiny-tests
+#patch2 -p0 -b .melt-tiny-tests
+
+%patch3 -p0 -b .fix-talpo
 
 # Avoid consuming too much memory
 #sed -ri 								\

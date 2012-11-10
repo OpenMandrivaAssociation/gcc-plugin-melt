@@ -1,0 +1,11 @@
+--- melt-build.mk	2011-06-27 09:59:56.645873997 +0000
++++ melt-build.mk.dynamic	2011-06-27 10:00:20.323029493 +0000
+@@ -417,7 +417,7 @@
+ ## melt-stage0-static
+ .PHONY: warmelt0
+ ## the default stage0 melt-stage0-dynamic
+-MELT_STAGE_ZERO?= melt-stage0-dynamic
++MELT_STAGE_ZERO?= melt-stage0-static
+ warmelt0: $(melt_make_cc1_dependency) $(MELT_STAGE_ZERO) $(MELT_STAGE_ZERO).timestamp 
+ $(MELT_STAGE_ZERO):
+ 	-test -d $(MELT_STAGE_ZERO)/ || mkdir $(MELT_STAGE_ZERO)

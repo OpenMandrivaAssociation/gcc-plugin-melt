@@ -1,0 +1,11 @@
+--- BUILD/melt-0.8.0.99-plugin-for-gcc-4.6/MELT-Plugin-Makefile	2011-07-21 13:06:38.000000000 +0200
++++ MELT-Plugin-Makefile	2011-07-23 18:04:47.351170261 +0200
+@@ -154,7 +154,7 @@
+ 
+ ## Tell GNU make to not build goals in parallel, that is to ignore any
+ ## -j flag to make.
+-.NOTPARALLEL:
++#.NOTPARALLEL:
+ 
+ all: melt-run.h melt.so bootstrap-melt $(melt_default_modules_list).modlis doc
+ 

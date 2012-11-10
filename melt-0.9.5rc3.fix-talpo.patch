@@ -1,0 +1,11 @@
+--- melt/warmelt-modes.melt	(revision 186302)
++++ melt/warmelt-modes.melt	(working copy)
+@@ -3600,7 +3600,8 @@
+     (debug "translatetomodule_docmd inarg=" inarg " outarg=" outarg
+ 	   " coutarg=" coutarg " curenv=" curenv)
+     (translate_to_flavored_module inarg outarg coutarg
+-				  (tuple '"quicklybuilt" '"optimized" '"debugnoline")) 
++				  (tuple '"quicklybuilt" '"optimized" '"debugnoline")
++				  curenv) 
+     (return :true)			;succeed the mode
+     ))

@@ -13,7 +13,7 @@ Release:	1
 License:	GPLv3
 Summary:	Middle End Lisp Translator GCC plugin
 Group:		Development/C
-URL:		http://gcc-melt.org
+URL:		https://gcc-melt.org
 Source0:	http://gcc-melt.org/%{srcname}.tar.gz
 # From https://gitorious.org/melt-vim-syntax/melt-vim-syntax/archive-tarball/master
 Source1:	melt-vim-syntax.tar.gz

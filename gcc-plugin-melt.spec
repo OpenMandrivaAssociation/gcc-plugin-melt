@@ -26,6 +26,7 @@ Requires:	gcc-plugin-devel
 Suggests:	%{name}-doc
 Suggests:	%{name}-vim
 BuildConflicts:	gccmelt
+BuildRequires:	make
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	gmp-devel
 BuildRequires:	ppl-devel
